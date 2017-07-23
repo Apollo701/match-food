@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe IngredientInstruction, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe IngredientInstruction do
+  it { is_expected.to belong_to :ingredient }
+  it { is_expected.to belong_to :instruction }
+  it { is_expected.to validate_presence_of :ingredient_id }
+  it { is_expected.to validate_presence_of :instruction_id }
 end
