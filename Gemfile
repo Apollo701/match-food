@@ -35,3 +35,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
+
+gem 'mini_racer', platforms: :ruby
+gem 'webpacker_lite'
