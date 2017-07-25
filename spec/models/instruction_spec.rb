@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe Instruction do
   it { is_expected.to validate_presence_of :description }
   it { is_expected.to validate_presence_of :step }

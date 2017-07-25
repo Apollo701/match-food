@@ -37,6 +37,7 @@ group :development do
 end
 
 group :test do
+  gem 'poltergeist'
   gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
 end
 

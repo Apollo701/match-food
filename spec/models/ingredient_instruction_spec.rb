@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe IngredientInstruction do
   it { is_expected.to belong_to :ingredient }
   it { is_expected.to belong_to :instruction }

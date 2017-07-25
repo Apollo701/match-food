@@ -5,6 +5,9 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -29,8 +32,15 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # Ensure that if we are running js tests, we are using latest webpack assets
   # This will use the defaults of :js and :server_rendering meta tags
-  ReactOnRails::TestHelper.configure_rspec_to_compile_assets(config)
+  # ReactOnRails::TestHelper.configure_rspec_to_compile_assets(config)
 
+  ReactOnRails::TestHelper.configure_rspec_to_compile_assets(config, :feature_spec)
+
+  # Because we're using some CSS Webpack files, we need to ensure the webpack files are generated
+  # for all feature specs. https://github.com/shakacode/react_on_rails/issues/792
+  config.define_derived_metadata(file_path: %r{spec/features}) do |metadata|
+    metadata[:feature_spec] = true
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
